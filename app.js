@@ -1,0 +1,1 @@
+// Escribe aquí la lógica para manipular el DOM
