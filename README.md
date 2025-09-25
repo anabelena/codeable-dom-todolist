@@ -1,5 +1,11 @@
 # 🧠 Ejercicio: Lista Interactiva de Tareas (To-Do List con Filtros)
 
+
+
+## 💻 Resultado
+
+![Resultado de mi proyecto](./assets/laptop.png)
+
 ## 🎯 Objetivo
 
 Crear una aplicación web sencilla de lista de tareas, donde puedas:
