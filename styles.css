@@ -1,1 +1,108 @@
 /* Aquí puede agregar algún estilo que creas necesario */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* muy recomendado */
+}
+
+html,body{
+    height: 100%;
+    font-family: "Gill Sans", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+
+.app {
+  min-width: 300px;
+  background-color: #bcb1f7;
+  color: white;
+  border-radius: 10px;
+}
+
+#task-input {
+  padding: 10px;
+  border: 2px solid #f7c0f2;
+  border-radius: 6px;
+  outline: none;
+}
+
+#task-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 200px;
+  font-family: "Gill Sans", sans-serif;
+}
+
+#task-list li {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+
+
+#task-list li button:hover,
+
+#task-list li:hover {
+  background-color: rgb(212, 250, 128);
+  color: black;
+  border-radius: 8px;
+}
+
+#task-list li.completed span {
+  text-decoration: line-through;
+  color: #644ecc;
+}
+
+#task-list li input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  accent-color: #644ecc; /* color moderno para el check (soporte moderno) */
+  border-radius: 4px; /* esquinas redondeadas */
+}
+
+#task-list li button{
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: #bcb1f7;
+    cursor: pointer;
+
+}
+
+#filters button,
+#task-button {
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1.5px solid black;
+  text-align: center;
+  background-color: #6d5bc5;
+  color: rgb(241, 230, 230);
+}
+
+#filters button:hover,
+#task-button:hover {
+  color: black;
+  background-color: #8370f1;
+}
+
+button.disabled {
+  background-color: #dbd4ff;
+}
