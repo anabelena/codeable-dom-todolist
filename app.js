@@ -1,83 +1,59 @@
 // Elements
-const taskButton = document.getElementById("task-button");
-const taskInput = document.getElementById("task-input");
-const taskList = document.getElementById("task-list");
+const form = document.querySelector("#task-form");
+const taskInput = document.querySelector("#task-input");
+const taskList = document.querySelector("#task-list");
+const filterBtns = document.querySelectorAll("#filters button");
 
-// Filters
-const filterButtons = document.querySelectorAll("#filters button");
-console.log(filterButtons)
-// Listeners
-// Add Task
-taskButton.addEventListener("click", addTask);
-
-function addTask(event) {
-
-  event.preventDefault();
-
+// ===== Listeners ====
+// SUBMIT
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
   const taskText = taskInput.value;
-  if (taskText==="") return
+  if (!taskText) return;
+  addTask(taskText);
+  taskInput.value = "";
+});
 
-  // li
-  const li = document.createElement("li");
-
-  // checkbox
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  // Event listener for checkbox
-  checkbox.addEventListener("change", () => {
-    if (checkbox.checked) {
-      li.setAttribute("data-status", "completed");
-      li.className = "completed"
-    } else {
-      li.setAttribute("data-status", "pending");
-      li.className = "pending"
-    }
+// FILTERS BUTTONS
+filterBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    filterBtns.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    updateFilter();
   });
+});
 
-  // span
-  const span = document.createElement("span")
-  span.textContent = taskText
-
-  // Delete Button
+function addTask(taskText) {
+  const li = document.createElement("li");
+  const checkbox = document.createElement("input");
+  const span = document.createElement("span");
   const btnDelete = document.createElement("button");
+
+  li.dataset.status = "pending";
+  checkbox.type = "checkbox";
+  span.textContent = taskText;
   btnDelete.textContent = "🗑️";
-  // Event listerner for Delete button
+
+  // ===Events===
+  checkbox.addEventListener("change", () => {
+    li.setAttribute("data-status", checkbox.checked ? "completed" : "pending");
+  });
   btnDelete.addEventListener("click", () => {
-     taskList.removeChild(li);
+    taskList.removeChild(li);
   });
 
   li.append(checkbox, span, btnDelete);
-  li.setAttribute("data-status", "pending");
-  li.className = "pending"
   taskList.append(li);
-  taskInput.value = "";
 }
 
-// Función que aplica el filtro activo
 function updateFilter() {
-
   const activeBtn = document.querySelector("#filters button.active");
   const filter = activeBtn.dataset.filter; // all,completed,pending
-  const tasks = taskList.querySelectorAll("li"); 
-
-  tasks.forEach(li => {
+  taskList.querySelectorAll("li").forEach((li) => {
     if (filter === "all") {
-      li.style.display = "flex"; // show all
+      li.style.display = "flex";
     } else {
       li.style.display = li.dataset.status === filter ? "flex" : "none";
     }
   });
 }
-
-// Filter Button Event listener
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    // delete status active 
-    filterButtons.forEach(b => b.classList.remove("active"));
-    // add status to clicked button
-    btn.classList.add("active");
-    //apply filter!
-    updateFilter();
-  });
-});
-

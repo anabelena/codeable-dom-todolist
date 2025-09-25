@@ -26,7 +26,6 @@ body {
   gap: 15px;
 }
 
-
 .app {
   min-width: 300px;
   background-color: #bcb1f7;
@@ -65,7 +64,7 @@ body {
   border-radius: 8px;
 }
 
-#task-list li.completed span {
+#task-list li[data-status="completed"] span {
   text-decoration: line-through;
   color: #644ecc;
 }
@@ -95,6 +94,7 @@ body {
   text-align: center;
   background-color: #6d5bc5;
   color: rgb(241, 230, 230);
+  cursor: pointer;
 }
 
 #filters button:hover,
@@ -102,6 +102,12 @@ body {
   color: black;
   background-color: #8370f1;
 }
+
+
+#filters .active{
+  background-color: rgb(189, 75, 210);
+}
+
 
 button.disabled {
   background-color: #dbd4ff;
