@@ -11,6 +11,7 @@ form.addEventListener("submit", (e) => {
   const taskText = taskInput.value;
   if (!taskText) return;
   addTask(taskText);
+  updateFilter()
   taskInput.value = "";
 });
 
